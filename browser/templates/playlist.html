@@ -19,9 +19,33 @@
                 <td>{{ song.name }}</td>
                 <td><span ng-repeat="artist in song.artists">{{ artist.name }} </span></td>
                 <td>{{ song.genres.join(', ') }}</td>
+                <td><button ng-click="removeSong(song)" class="btn btn-default btn-xs"><span style='color: red;' class="glyphicon glyphicon-remove-circle"></span></button></td>
             </tr>
         </tbody>
     </table>
     <small ng-hide="playlist.songs.length">No songs.</small>
     <hr>
+</div>
+
+<div class="well">
+    <form class="form-horizontal" name="songAddForm">
+        <fieldset>
+            <legend>Add to Playlist</legend>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Song</label>
+                <div class="col-xs-10">
+                    <select class="form-control" ng-model="songId" required>
+                        <option value="" selected="selected">--Pick a Song--</option>
+                        <option ng-repeat="song in songs" value="{{song._id}}">{{song.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-10 col-xs-offset-2">
+                    <button type="submit" class="btn btn-success" ng-click="addSong()" ng-disabled="songAddForm.$invalid">Add Song</button>
+                    <br>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 </div>
